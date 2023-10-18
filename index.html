@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+/*const aprendiz1 = {
+    nombre: 'johan',
+    documento: '1010140712',
+    edad: 19,
+
+    saludar : function (){
+        console.log(`Hola, mi nombre es ${this.nombre} ` + 
+        `y tengo ${this.edad} años`);
+    },
+
+    despedida : function (){
+        console.log(`Hasta pronto les dice ${this.nombre}`);
+    }
+}
+
+console.log(`Tarea 1`);
+//despliega la configuracion del objeto aprendiz
+console.log({aprendiz1});
+
+console.log(`Tarea 2`);
+//notacion punto
+//Ejecutar los metodos del objeto
+aprendiz1.saludar();
+aprendiz1.despedida();
+
+console.log(`Tarea 3`);
+//Cambiar datos de atributos del objeto
+aprendiz1.nombre = 'Johan Vergara';
+aprendiz1.saludar();
+
+console.log(`Tarea 4`);
+//Adicionar atributos al objeto
+aprendiz1['apellidos'] = 'Urrego';
+aprendiz1['nombre'] = 'Zoraida';
+aprendiz1.saludar();
+
+console.log(`Tarea 5`);
+//Cambiar metodo del objeto
+aprendiz1['edad'] = 31;
+aprendiz1.saludar = function(){
+    console.log(`Hola, mi nombre es ${this.nombre} ${this.apellidos} ` + 
+    `y tengo ${this.edad} años`);
+}
+aprendiz1.saludar();
+
+console.log(`Tarea 6`);
+//Adicionar atributos y metodos al objeto mediante variables
+const ficha = 'ficha';
+const numFicha = '2798618';
+const progFicha = 'ADSO';
+aprendiz1[ficha] = numFicha;
+aprendiz1['programa'] = progFicha;
+aprendiz1.estudiar = function(){
+    console.log(`Estoy matriculado en la ficha ${this.ficha} ` + 
+    `y cursando 1er trimestre del programa ${this.programa}!`);
+}
+aprendiz1.estudiar();*/
+
+function Aprendiz(documento, nombres, apellidos, edad, ficha, programa){
+    this.documento = documento;
+    this.nombres = nombres;
+    this.apellidos = apellidos;
+    this.edad = edad;
+    this.ficha = ficha;
+    this.programa = programa;
+}
+
+let aprendiz1 = new Aprendiz('1010140727', 'Maria Paula', 
+'Hernandez Arias', 20, '2798618', 'ADSO');  
+
+console.log({aprendiz1});
+
+//utilizando prototipo del objeto
+Aprendiz.prototype.saludar = function(){
+    console.log(`Hola, mi nombre es ${this.nombres} ` + 
+    `y tengo ${this.edad} años`);
+}
+Aprendiz.prototype.despedida = function(){
+    console.log(`Hasta pronto les dice ${this.nombres} ` + 
+    `${this.apellidos}`);
+}
+Aprendiz.prototype.estudiar = function(){
+    console.log(`Matriculado en la ficha ${this.ficha} ` + 
+    `y cursando 1er trimestre del programa ${this.programa}!`);
+}
+
+//Herencia prototipica
+function AprendizEtapaPractica(documento, nombres, apellidos, edad, ficha,
+programa, empresa, funcion){
+    this.super = Aprendiz;
+    this.super(documento, nombres, apellidos, edad, ficha, programa);
+    this.empresa = empresa;
+    this.funcion = funcion;
+}
+
+//AprendizEtapaPractica hereda de Aprendiz
+AprendizEtapaPractica.prototype = new Aprendiz();
+AprendizEtapaPractica.prototype.constructor = Aprendiz;
+
+//Sobreescritura de metodo heredado
+AprendizEtapaPractica.prototype.estudiar = function(){
+    console.log(`Termine etapa lectiva y me encuentro en etapa productiva`);
+}
+
+//Adicion de nuevo metodo
+AprendizEtapaPractica.prototype.trabajar = function(){
+    console.log(`Estoy trabajando en la empresa ${this.empresa} ` + 
+    `cumpliendo fonciones de ${this.funcion}`);
+}
+
+let aprendiz2 = new AprendizEtapaPractica('12345678', 'fabian andres', 'figueredo', 12, 
+'2798618', 'ADSO', 'Politecnico', 'Instructor');
+
+console.log({aprendiz2});
+
+aprendiz2.estudiar();
+aprendiz2.trabajar();
+    </script>
+</body>
+
+</html>
